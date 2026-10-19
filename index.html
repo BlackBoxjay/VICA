@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#174A2E">
+<title>VICA | Voice in Craft Art</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F3F5F2;--sf:#fff;--ink:#14201D;--mut:#5B6A66;--brand:#174A2E;--gold:#F7B500;--ln:#DDE3DF;--rh:#D9600B;--sh:#C8281E;--ws:#2E7D32;--pv:#B9820A;color-scheme:light}
+@media(prefers-color-scheme:dark){:root{--bg:#0D1513;--sf:#16221F;--ink:#E9EFEC;--mut:#9AABA5;--brand:#0F2E1D;--ln:#27362F;--sh:#D63A2F;--ws:#2E8B4A;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:500 16px/1.4 'Bricolage Grotesque',system-ui,sans-serif;-webkit-tap-highlight-color:transparent}
+header{position:sticky;top:0;z-index:9;background:var(--brand);color:#fff;padding-top:env(safe-area-inset-top,0px)}
+.top{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;gap:8px}
+.g{font-size:20px;font-weight:800;display:block}.top small{opacity:.75;display:block;max-width:170px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hb{display:flex;gap:6px}.out{border:1.5px solid #fff6;background:none;color:#fff;font:600 14px inherit;font-family:inherit;border-radius:999px;min-height:40px;padding:0 14px}
+.beads{height:12px;background-color:var(--ws);background-image:linear-gradient(135deg,var(--gold) 25%,transparent 25%),linear-gradient(225deg,var(--gold) 25%,transparent 25%),linear-gradient(315deg,var(--sh) 25%,transparent 25%),linear-gradient(45deg,var(--sh) 25%,transparent 25%);background-size:24px 12px;background-position:-12px 0,-12px 0,0 0,0 0}
+main{padding:16px 16px 110px;max-width:640px;margin:auto}
+h2{font-size:24px;line-height:1.15;margin:8px 0;font-weight:800}h3{margin:18px 0 6px}
+.mut{color:var(--mut)}small.mut{display:block}
+.card{background:var(--sf);border:1px solid var(--ln);border-radius:14px;padding:14px;margin:0 0 10px}
+.card.urg{border-color:var(--sh)}
+.hero{background:var(--brand);color:#fff;border:0;border-radius:20px;padding:18px}.hero .mut{color:#ffffffb0}
+.chip{display:inline-block;color:#fff;font-size:13px;font-weight:700;padding:3px 10px;border-radius:999px}
+.times{display:flex;gap:10px;margin:10px 0}.times div{flex:1;background:#ffffff18;border-radius:12px;padding:8px 12px}.sheet .times div{background:var(--bg)}
+.times small{display:block;opacity:.75}.times b{font-size:22px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 18px;border-radius:12px;border:2px solid currentColor;background:none;color:inherit;font:700 15px inherit;font-family:inherit;text-decoration:none;margin:6px 6px 6px 0;cursor:pointer}
+.btn.p{background:var(--gold);border-color:var(--gold);color:#12302B}
+.rs{display:flex;gap:8px;margin:10px 0}.rs button{flex:1;min-height:48px;border-radius:12px;border:2px solid #8a9a95;background:none;color:inherit;font:700 15px inherit;font-family:inherit}
+.rs button.on{color:#fff;border-color:transparent}.rs .going.on{background:var(--ws)}.rs .maybe.on{background:#B9860B}.rs .no.on{background:var(--sh)}
+.row{display:flex;gap:12px;align-items:center;cursor:pointer}.row .d{min-width:58px;text-align:center;font-weight:800;line-height:1.1}.bar{border-left:6px solid var(--c)}
+.row2{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-bottom:8px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:10px}.chips button{white-space:nowrap;min-height:40px;border-radius:999px;border:1.5px solid var(--ln);background:var(--sf);color:var(--ink);font:600 14px inherit;font-family:inherit;padding:0 14px}
+.chips button.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.tile{position:relative;aspect-ratio:1;border-radius:14px;overflow:hidden;margin:0;background:var(--ln);cursor:pointer}.tile img{width:100%;height:100%;object-fit:cover;display:block}
+.tile figcaption{position:absolute;left:0;right:0;bottom:0;padding:20px 8px 6px;background:linear-gradient(transparent,#000b);color:#fff;font-size:13px;font-weight:600}
+.ph0{height:100%;display:grid;place-items:center;font-weight:800;font-size:28px;color:var(--mut)}
+nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--sf);border-top:1px solid var(--ln);padding-bottom:env(safe-area-inset-bottom,0px);z-index:8}
+nav button{flex:1;border:0;background:none;color:var(--mut);font:600 12px inherit;font-family:inherit;min-height:58px;position:relative}
+nav button.on{color:var(--ink);font-weight:800;box-shadow:inset 0 3px 0 var(--sh)}
+nav i{position:absolute;top:6px;left:56%;background:var(--sh);color:#fff;font-style:normal;font-size:11px;border-radius:9px;padding:0 5px}
+#ov{position:fixed;inset:0;background:#0007;z-index:11;display:none}
+.sheet{position:fixed;left:0;right:0;bottom:0;max-height:90%;overflow:auto;background:var(--sf);border-radius:22px 22px 0 0;padding:16px 16px calc(20px + env(safe-area-inset-bottom,0px));z-index:12;display:none;max-width:640px;margin:auto}
+.grab{width:44px;height:5px;border-radius:3px;background:var(--ln);margin:0 auto 10px}
+label{display:block;font-size:14px;color:var(--mut);margin-bottom:10px}
+input,select,textarea{display:block;width:100%;min-height:48px;border-radius:12px;border:1.5px solid var(--ln);background:var(--bg);color:var(--ink);font:inherit;padding:10px 12px;margin-top:4px}textarea{min-height:90px}
+#toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:12px;z-index:30;opacity:0;pointer-events:none;transition:opacity .2s;max-width:90%;text-align:center}
+.login{min-height:100vh;background:var(--brand);color:#fff;padding:0 20px 30px}.login .beads{margin:0 -20px}
+.login h1{font-size:52px;margin:26px 0 0;font-weight:800}.sub{margin:0 0 22px;opacity:.8}
+.how{background:#ffffff18;border-radius:16px;padding:16px;margin-bottom:16px}.how ol{margin:8px 0 10px;padding-left:20px}
+.panel{background:var(--sf);color:var(--ink);border-radius:16px;padding:16px}.panel .btn{width:100%;margin:6px 0}
+.msg{color:var(--sh);margin:0 0 10px}.msg.ok{color:var(--ws)}
+a{color:inherit}:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+</style></head><body>
+<div id="root"></div><div id="ov" data-a="close"></div><section id="sh" class="sheet" role="dialog" aria-modal="true"></section><div id="toast" role="status"></div>
+<script type="module">
+import{initializeApp}from'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
+import{getAuth,onAuthStateChanged,createUserWithEmailAndPassword,signInWithEmailAndPassword,sendEmailVerification,sendPasswordResetEmail,signOut,updateProfile}from'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
+import{getFirestore,collection,doc,getDoc,setDoc,addDoc,updateDoc,deleteDoc,getDocs,onSnapshot,query,where,orderBy,limit,serverTimestamp,Timestamp}from'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
+
+// ====== PASTE YOUR FIREBASE DETAILS HERE (Firebase console > Project settings > Your apps) ======
+const CFG={apiKey:'AIzaSyBifQU0fR2V8JFd84Qdb_rLuUiIzOuLvpQ',authDomain:'vica-2a7cf.firebaseapp.com',projectId:'vica-2a7cf',appId:'1:22141687261:web:71752bbbe6dde1d6c09234'};
+const CUR='$'; // change to your currency symbol
+// ================================================================================================
+const CFGOK=!CFG.apiKey.startsWith('PASTE');
+let auth,db;if(CFGOK){const a=initializeApp(CFG);auth=getAuth(a);db=getFirestore(a)}
+
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const p2=n=>String(n).padStart(2,'0');
+const fd=d=>d.toLocaleDateString(undefined,{weekday:'short',day:'numeric',month:'short'});
+const when=d=>{const t=new Date();t.setHours(0,0,0,0);const n=Math.round((new Date(d.getFullYear(),d.getMonth(),d.getDate())-t)/864e5);return n<=0?'today':n==1?'tomorrow':'in '+n+' days'};
+const money=n=>CUR+(Number(n)%1?Number(n).toFixed(2):Number(n));
+let tt;const toast=m=>{const t=$('#toast');t.textContent=m;t.style.opacity=1;clearTimeout(tt);tt=setTimeout(()=>t.style.opacity=0,2600)};
+const er=e=>toast(e&&e.message?e.message:'Something went wrong');
+const friendly=c=>({'auth/invalid-credential':'The email or password is incorrect.','auth/wrong-password':'The email or password is incorrect.','auth/user-not-found':'The email or password is incorrect.','auth/email-already-in-use':'That email already has an account. Log in instead.','auth/weak-password':'Choose a stronger password.','auth/invalid-email':'Enter a valid email address.','auth/too-many-requests':'Too many attempts. Wait a few minutes and try again.','auth/network-request-failed':'No internet connection.'}[c]||'Something went wrong. Please try again.');
+const TY={rehearsal:['Rehearsal','--rh'],show:['Performance','--sh'],workshop:['Workshop','--ws'],private:['Private event','--pv']};
+const AL=['All members','Senior members','Admin only'];
+const ST=['New','Paid','Collected'];
+const HINT={photo:'Paste a direct link to an image (ending in .jpg or .png).',audio:'Paste a direct link to an audio file (.mp3 or .m4a).',video:'Paste a YouTube link, or a direct link to an .mp4 file.'};
+
+let S={tab:'home',am:'in',f:'all',gt:'photo',msg:'',ok:0,user:null,me:null,ready:0,sheet:''};
+let EV=[],NT=[],MD=[],PR=[],OR=[],US=[],RS={},AK={},CART=[];
+try{CART=JSON.parse(localStorage.getItem('vica_cart')||'[]')}catch(e){}
+const saveCart=()=>{try{localStorage.setItem('vica_cart',JSON.stringify(CART))}catch(e){}};
+let subs=[],dsubs=[],rsubs={},asubs={},poll,hcU;
+const isA=()=>S.me&&S.me.role==='admin';
+const lvl=()=>isA()?2:(S.me&&S.me.role==='senior'?1:0);
+const UP=()=>EV.slice().sort((a,b)=>a.date.toMillis()-b.date.toMillis()||(a.call||'').localeCompare(b.call||''));
+const dir=e=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(e.venue||'');
+
+// ---------- data ----------
+const unsubData=()=>{dsubs.forEach(f=>f());dsubs=[];Object.values(rsubs).forEach(f=>f());Object.values(asubs).forEach(f=>f());rsubs={};asubs={};RS={};AK={};EV=[];NT=[];MD=[];PR=[];OR=[];US=[]};
+const unsubAll=()=>{subs.forEach(f=>f());subs=[];unsubData()};
+const sub=(q,f)=>dsubs.push(onSnapshot(q,f,er));
+const rows=s=>s.docs.map(d=>({id:d.id,...d.data()}));
+function subscribeData(){unsubData();const A=isA(),t=new Date();t.setHours(0,0,0,0);
+ sub(query(collection(db,'events'),where('date','>=',Timestamp.fromDate(t)),orderBy('date')),s=>{EV=rows(s);watchOwn();render()});
+ sub(query(collection(db,'notifications'),orderBy('createdAt','desc'),limit(50)),s=>{NT=rows(s);watchAcks();render()});
+ sub(query(collection(db,'media'),where('access','<=',lvl())),s=>{MD=rows(s);render()});
+ sub(query(collection(db,'products'),orderBy('name')),s=>{PR=rows(s);render()});
+ sub(A?query(collection(db,'orders'),orderBy('createdAt','desc')):query(collection(db,'orders'),where('uid','==',S.me.uid)),s=>{OR=rows(s);render();if(S.sheet=='orders')ordersSheet()});
+ if(A)sub(query(collection(db,'users'),orderBy('name')),s=>{US=rows(s);if(S.sheet=='members')membersSheet()})}
+function watchOwn(){EV.forEach(e=>{if(rsubs[e.id])return;rsubs[e.id]=onSnapshot(doc(db,'events',e.id,'rsvps',S.me.uid),s=>{RS[e.id]=s.exists()?s.data().status:null;render()},er)})}
+function watchAcks(){NT.filter(n=>n.urgent).forEach(n=>{if(asubs[n.id])return;asubs[n.id]=isA()?onSnapshot(collection(db,'notifications',n.id,'acks'),s=>{AK[n.id]=s.size;render()},er):onSnapshot(doc(db,'notifications',n.id,'acks',S.me.uid),s=>{AK[n.id]=s.exists();render()},er)})}
+function start(u){const r=doc(db,'users',u.uid);
+ getDoc(r).then(s=>{if(!s.exists())return setDoc(r,{name:u.displayName||'',email:u.email,role:'performer',createdAt:serverTimestamp()})}).catch(er).then(()=>{let role;
+ subs.push(onSnapshot(r,s=>{const d=s.data();if(!d)return;const first=!S.me;S.me={uid:u.uid,...d};if(first||role!==d.role){role=d.role;subscribeData()}render()},er))})}
+async function chk(){const u=auth.currentUser;if(!u)return;try{await u.reload();if(u.emailVerified){clearInterval(poll);await u.getIdToken(true);S.user=u;start(u);render()}else if(S.manual){toast('Not verified yet. Open the link in the email, then try again.')}}catch(e){}S.manual=0}
+if(CFGOK)onAuthStateChanged(auth,u=>{clearInterval(poll);unsubAll();S.me=null;S.user=u;S.ready=1;if(u&&u.emailVerified)start(u);else if(u)poll=setInterval(chk,3000);render()});
+else S.ready=1;
+
+// ---------- views ----------
+function render(){const r=$('#root');
+ if(!CFGOK){r.innerHTML='<div class="login"><h1>VICA</h1><div class="panel"><h2>Almost there</h2><p>Open <b>index.html</b> in your GitHub repository, tap the pencil (edit) icon, and replace the four PASTE values near the top with the details from your Firebase project. Then save (commit).</p></div></div>';return}
+ if(!S.ready)return void(r.innerHTML='<p class="mut" style="padding:24px">Loading...</p>');
+ if(!S.user)return authV();
+ if(!S.user.emailVerified)return verifyV();
+ if(!S.me)return void(r.innerHTML='<p class="mut" style="padding:24px">Loading your profile...</p>');
+ appV()}
+function authV(){const m=S.am,up=m=='up',fg=m=='fg';
+ $('#root').innerHTML=`<div class="login"><div class="beads"></div><h1>VICA</h1><p class="sub">Voice in Craft Art</p>
+ ${m=='in'?`<div class="how"><b>New here? Create an account in 4 steps</b><ol><li>Tap Create account.</li><li>Enter your name, email and a password.</li><li>Open the verification email we send you.</li><li>Come back and log in. You land on your schedule.</li></ol><button class="btn p" data-a="am" data-v="up">Create account</button></div>`:''}
+ <div class="panel"><h2>${up?'Create your account':fg?'Reset your password':'Log in'}</h2>${S.msg?`<p class="msg ${S.ok?'ok':''}">${esc(S.msg)}</p>`:''}
+ ${up?'<label>Full name<input id="n" autocomplete="name"></label>':''}<label>Email<input id="e" type="email" autocomplete="email"></label>
+ ${fg?'':`<label>Password<input id="p" type="password" autocomplete="${m=='in'?'current-password':'new-password'}"></label>`}
+ ${up?'<label>Confirm password<input id="p2" type="password" autocomplete="new-password"></label>':''}
+ <button class="btn p" data-a="login">${up?'Create account':fg?'Send reset link':'Log in'}</button>
+ ${m=='in'?'<button class="btn" data-a="am" data-v="fg">Forgot password?</button>':'<button class="btn" data-a="am" data-v="in">Back to log in</button>'}</div></div>`}
+function verifyV(){$('#root').innerHTML=`<div class="login"><div class="beads"></div><h1>VICA</h1><div class="panel" style="margin-top:20px"><h2>Check your inbox</h2><p>We sent a verification link to <b>${esc(S.user.email)}</b>. Open it, then come back here. Check your spam folder too.</p><button class="btn p" data-a="verified">I have verified my email</button><button class="btn" data-a="resend">Send the email again</button><button class="btn" data-a="logout">Use a different account</button></div></div>`}
+function appV(){const A=isA(),bad=A?0:NT.filter(n=>n.urgent&&!AK[n.id]).length;
+ const T=[['home','Home'],['cal','Calendar'],['gal','Gallery'],['shop','Shop'],['inbox','Inbox']];
+ $('#root').innerHTML=`<header><div class="top"><div><b class="g">VICA</b><small>${A?'Admin: ':''}${esc(S.me.name||S.me.email)}</small></div><div class="hb">${A?'<button class="out" data-a="members">Members</button>':''}<button class="out" data-a="menu">Menu</button></div></div><div class="beads"></div></header>
+ <main>${({home,cal,gal,shop,inbox})[S.tab]()}</main>
+ <nav>${T.map(([k,l])=>`<button class="${S.tab==k?'on':''}" data-a="tab" data-v="${k}">${l}${k=='inbox'&&bad?`<i>${bad}</i>`:''}</button>`).join('')}</nav>`}
+const chip=e=>`<span class="chip" style="background:var(${(TY[e.type]||TY.rehearsal)[1]})">${(TY[e.type]||TY.rehearsal)[0]}</span>`;
+const rsv=id=>`<div class="rs">${[['going','Going'],['maybe','Maybe'],['no',"Can't go"]].map(([k,l])=>`<button class="${k} ${RS[id]==k?'on':''}" data-a="rs" data-id="${id}" data-v="${k}">${l}</button>`).join('')}</div>`;
+const item=e=>{const d=e.date.toDate();return`<div class="card bar row" style="--c:var(${(TY[e.type]||TY.rehearsal)[1]})" data-a="ev" data-id="${e.id}"><div class="d">${fd(d).replace(' ','<br>')}</div><div><b>${esc(e.name)}</b><div class="mut">${(TY[e.type]||TY.rehearsal)[0]} · Call ${esc(e.call)} · ${({going:'Going',maybe:'Maybe',no:"Can't go"})[RS[e.id]]||'No response'}</div></div></div>`};
+function home(){const up=UP();if(!up.length)return`<p class="mut">No upcoming events${isA()?'. Add one in the Calendar tab.':' yet.'}</p>`;
+ const n=up[0],d=n.date.toDate();
+ return`<div class="card hero">${chip(n)}<h2>${esc(n.name)}</h2><div class="mut">${fd(d)}, ${when(d)}</div><div class="times"><div><small>Call</small><b>${esc(n.call)}</b></div>${n.show?`<div><small>Show</small><b>${esc(n.show)}</b></div>`:''}</div><div>${esc(n.venue)}</div><a class="btn p" target="_blank" rel="noopener" href="${dir(n)}">Directions</a><button class="btn" data-a="ev" data-id="${n.id}">Call sheet</button>${rsv(n.id)}</div>${up.length>1?'<h3>Coming up</h3>'+up.slice(1,6).map(item).join(''):''}`}
+function cal(){const fs=[['all','All'],...Object.entries(TY).map(([k,v])=>[k,v[0]])],l=UP().filter(e=>S.f=='all'||e.type==S.f);
+ return`<div class="chips">${fs.map(([k,n])=>`<button class="${S.f==k?'on':''}" data-a="filt" data-v="${k}">${n}</button>`).join('')}</div>`+(isA()?'<button class="btn p" data-a="evNew">New event</button>':'')+(l.map(item).join('')||'<p class="mut">Nothing scheduled here yet.</p>')}
+const vid=u=>{const m=String(u).match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([\w-]{11})/);return m?`<iframe src="https://www.youtube.com/embed/${m[1]}" style="width:100%;aspect-ratio:16/9;border:0;border-radius:12px;margin-top:8px" allowfullscreen></iframe>`:`<video controls playsinline preload="metadata" src="${esc(u)}" style="width:100%;margin-top:8px;border-radius:12px"></video>`};
+function gal(){const k=S.gt,A=isA(),l=MD.filter(x=>x.kind==k).sort((a,b)=>((b.createdAt&&b.createdAt.toMillis&&b.createdAt.toMillis())||Date.now())-((a.createdAt&&a.createdAt.toMillis&&a.createdAt.toMillis())||Date.now()));
+ return`<div class="chips">${[['photo','Photos'],['audio','Audio'],['video','Videos']].map(([i,n])=>`<button class="${k==i?'on':''}" data-a="galT" data-v="${i}">${n}</button>`).join('')}</div>`+(A?`<button class="btn p" data-a="medNew" data-v="${k}">Add ${k}</button>`:'')+
+ (!l.length?`<p class="mut">Nothing here yet.${A?'':' Admins can add items.'}</p>`:k=='photo'?`<div class="grid">${l.map(x=>`<figure class="tile" data-a="medOpen" data-id="${x.id}"><img src="${esc(x.url)}" alt="${esc(x.title)}" loading="lazy"><figcaption>${esc(x.title)}</figcaption></figure>`).join('')}</div>`:
+ l.map(x=>`<div class="card"><b>${esc(x.title)}</b><div class="mut">${AL[x.access||0]}</div>${k=='audio'?`<audio controls preload="none" src="${esc(x.url)}" style="width:100%;margin-top:8px"></audio>`:vid(x.url)}${A?`<button class="btn" data-a="medEdit" data-id="${x.id}">Edit</button><button class="btn" data-a="medDel" data-id="${x.id}" data-conf>Delete</button>`:''}</div>`).join(''))}
+function shop(){const c=CART.reduce((s,i)=>s+i.q,0),t=CART.reduce((s,i)=>s+i.q*i.price,0),A=isA();
+ return`<div class="row2">${c?`<button class="btn p" data-a="cart">Cart: ${c} item${c>1?'s':''}, ${money(t)}</button>`:'<span class="mut">Cart is empty</span>'}<button class="btn" data-a="orders">${A?'Orders ('+OR.length+')':'My orders'}</button>${A?'<button class="btn" data-a="prNew">Add product</button>':''}</div>`+
+ (PR.length?`<div class="grid">${PR.map(x=>`<figure class="tile" data-a="prod" data-id="${x.id}">${x.imageUrl?`<img src="${esc(x.imageUrl)}" alt="${esc(x.name)}" loading="lazy">`:'<div class="ph0">VICA</div>'}<figcaption>${esc(x.name)}<br>${money(x.price)}</figcaption></figure>`).join('')}</div>`:'<p class="mut">The shop is being stocked. Check back soon.</p>')}
+function inbox(){const A=isA();return(A?'<button class="btn p" data-a="annNew">New announcement</button>':'')+(NT.map(n=>`<div class="card ${n.urgent?'urg':''}"><b>${n.urgent?'Urgent: ':''}${esc(n.title)}</b>${n.body?`<div class="mut">${esc(n.body)}</div>`:''}${n.createdAt?`<small class="mut">${n.createdAt.toDate().toLocaleString()}</small>`:''}${n.urgent?(A?`<div><b>${AK[n.id]||0} members confirmed</b></div>`:AK[n.id]?'<div><b>Confirmed</b></div>':`<button class="btn p" data-a="ack" data-id="${n.id}">Got it</button>`):''}${A?`<button class="btn" data-a="ntDel" data-id="${n.id}" data-conf>Delete</button>`:''}</div>`).join('')||'<p class="mut">No messages yet.</p>')}
+
+// ---------- sheets ----------
+const showS=h=>{$('#sh').innerHTML='<div class="grab"></div>'+h;$('#sh').style.display='block';$('#ov').style.display='block'};
+const closeS=()=>{$('#sh').style.display='none';$('#ov').style.display='none';S.sheet='';if(hcU){hcU();hcU=null}};
+function evSheet(id){const e=EV.find(x=>x.id==id);if(!e)return;const d=e.date.toDate(),A=isA();
+ showS(`${chip(e)}<h2>${esc(e.name)}</h2><div class="mut">${fd(d)}, ${when(d)}</div><div class="times"><div><small>Call</small><b>${esc(e.call)}</b></div>${e.show?`<div><small>Show</small><b>${esc(e.show)}</b></div>`:''}</div><b>${esc(e.venue)}</b><br><a class="btn" target="_blank" rel="noopener" href="${dir(e)}">Directions</a>
+ ${e.notes?`<h3>Notes</h3><p>${esc(e.notes)}</p>`:''}${(e.lineup||[]).length?'<h3>Lineup</h3><ol>'+e.lineup.map(x=>`<li>${esc(x)}</li>`).join('')+'</ol>':''}${e.costume?`<h3>Costume</h3><p>${esc(e.costume)}</p>`:''}
+ <h3>Your response</h3>${rsv(id)}
+ ${A?`<h3>Responses</h3><div id="hc" class="mut">Loading...</div><button class="btn" data-a="evEdit" data-id="${id}">Edit</button><button class="btn" data-a="alert" data-id="${id}">Urgent alert</button><button class="btn" data-a="evDel" data-id="${id}" data-conf>Delete event</button>`:''}
+ <button class="btn" data-a="close">Close</button>`);
+ if(A){hcU&&hcU();hcU=onSnapshot(collection(db,'events',id,'rsvps'),s=>{const g={going:[],maybe:[],no:[]};s.docs.forEach(x=>{const v=x.data();g[v.status]&&g[v.status].push(v.name||'Member')});const el=$('#hc');if(el)el.innerHTML=`<b>Going ${g.going.length} · Maybe ${g.maybe.length} · Not going ${g.no.length}</b>${['going','maybe','no'].map(k=>g[k].length?`<div>${{going:'Going',maybe:'Maybe',no:'Not going'}[k]}: ${esc(g[k].join(', '))}</div>`:'').join('')}`},er)}}
+function evForm(id){const e=id?EV.find(x=>x.id==id):{name:'',type:'rehearsal',call:'17:00',show:'',venue:'',notes:'',costume:'',lineup:[],date:Timestamp.fromDate(new Date(Date.now()+7*864e5))};const d=e.date.toDate();
+ showS(`<h2>${id?'Edit':'New'} event</h2><label>Name<input id="f1" value="${esc(e.name)}"></label><label>Type<select id="f2">${Object.entries(TY).map(([k,v])=>`<option value="${k}" ${k==e.type?'selected':''}>${v[0]}</option>`).join('')}</select></label><label>Date<input id="f3" type="date" value="${d.getFullYear()}-${p2(d.getMonth()+1)}-${p2(d.getDate())}"></label><label>Call time<input id="f4" type="time" value="${esc(e.call)}"></label><label>Show time (optional)<input id="f5" type="time" value="${esc(e.show)}"></label><label>Venue<input id="f6" value="${esc(e.venue)}"></label><label>Notes<input id="f7" value="${esc(e.notes)}"></label><label>Costume<input id="f8" value="${esc(e.costume)}"></label><label>Lineup (one per line)<textarea id="f9">${esc((e.lineup||[]).join('\n'))}</textarea></label><button class="btn p" data-a="evSave" data-id="${id||''}">Save</button><button class="btn" data-a="close">Cancel</button>`)}
+function medForm(k,id){const x=id?MD.find(m=>m.id==id):{title:'',url:'',access:0};
+ showS(`<h2>${id?'Edit':'Add'} ${k}</h2><label>Title<input id="m1" value="${esc(x.title)}"></label><label>Link to the file<input id="m2" type="url" value="${esc(x.url)}" placeholder="https://..."></label>${k=='photo'?'':`<label>Who can open it<select id="m3">${AL.map((n,i)=>`<option value="${i}" ${i==x.access?'selected':''}>${n}</option>`).join('')}</select></label>`}<p class="mut">${HINT[k]}</p><button class="btn p" data-a="medSave" data-id="${id||''}" data-v="${k}">Save</button><button class="btn" data-a="close">Cancel</button>`)}
+function prodSheet(id){const p=PR.find(x=>x.id==id);if(!p)return;const sz=(p.sizes||'').split(',').map(s=>s.trim()).filter(Boolean);
+ showS(`${p.imageUrl?`<img src="${esc(p.imageUrl)}" alt="" style="width:100%;max-height:220px;object-fit:cover;border-radius:14px">`:''}<h2>${esc(p.name)}</h2><b>${money(p.price)}</b><p>${esc(p.description)}</p>${sz.length?`<label>Size<select id="sz">${sz.map(s=>`<option>${esc(s)}</option>`).join('')}</select></label>`:''}<button class="btn p" data-a="addCart" data-id="${id}">Add to cart</button>${isA()?`<button class="btn" data-a="prEdit" data-id="${id}">Edit</button><button class="btn" data-a="prDel" data-id="${id}" data-conf>Delete</button>`:''}<button class="btn" data-a="close">Close</button>`)}
+function prForm(id){const p=id?PR.find(x=>x.id==id):{name:'',price:'',description:'',sizes:'',imageUrl:''};
+ showS(`<h2>${id?'Edit':'Add'} product</h2><label>Name<input id="q1" value="${esc(p.name)}"></label><label>Price (${CUR})<input id="q2" type="number" min="0" step="0.01" value="${esc(p.price)}"></label><label>Description<input id="q3" value="${esc(p.description)}"></label><label>Sizes, separated by commas (optional)<input id="q4" value="${esc(p.sizes)}"></label><label>Photo link (optional)<input id="q5" type="url" value="${esc(p.imageUrl)}" placeholder="https://..."></label><button class="btn p" data-a="prSave" data-id="${id||''}">Save product</button><button class="btn" data-a="close">Cancel</button>`)}
+function cartSheet(){if(!CART.length){closeS();return}const t=CART.reduce((s,i)=>s+i.q*i.price,0);
+ showS(`<h2>Your cart</h2>${CART.map((c,i)=>`<div class="card"><b>${esc(c.name)}</b>${c.size?' ('+esc(c.size)+')':''}<div class="mut">${money(c.price)} each</div><button class="btn" data-a="qty" data-i="${i}" data-v="-1">-</button> <b>${c.q}</b> <button class="btn" data-a="qty" data-i="${i}" data-v="1">+</button></div>`).join('')}<h3>Total ${money(t)}</h3><label>Your name<input id="o1" value="${esc(S.me.name)}"></label><label>Phone or email<input id="o2" value="${esc(S.me.email)}"></label><p class="mut">This places an order request. The group will contact you to arrange payment and collection.</p><button class="btn p" data-a="order">Place order</button><button class="btn" data-a="close">Keep shopping</button>`)}
+function ordersSheet(){S.sheet='orders';const A=isA();
+ showS(`<h2>${A?'Orders':'My orders'}</h2>${OR.map(o=>`<div class="card"><b>Order ${esc(o.id.slice(0,6).toUpperCase())}</b>${A?`<div>${esc(o.name)}, ${esc(o.contact)}</div>`:''}<div class="mut">${(o.items||[]).map(i=>i.qty+' x '+esc(i.name)+(i.size?' ('+esc(i.size)+')':'')).join('<br>')}</div><b>Total ${money(o.total)}</b><br>${A?`<button class="btn" data-a="ost" data-id="${o.id}">${esc(o.status)}. Tap to change</button><button class="btn" data-a="odel" data-id="${o.id}" data-conf>Delete</button>`:`<span class="chip" style="background:var(--ws)">${esc(o.status)}</span>`}</div>`).join('')||'<p class="mut">No orders yet.</p>'}<button class="btn" data-a="close">Close</button>`)}
+function membersSheet(){S.sheet='members';
+ showS(`<h2>Members and roles</h2><p class="mut">To add an administrator, ask them to create an account and verify their email. They then appear here, and you can set their role to Admin. Senior members can open items marked Senior members.</p>${US.map(u=>`<div class="card"><b>${esc(u.name||u.email)}</b><div class="mut">${esc(u.email)}</div><select data-c="role" data-id="${u.id}" ${u.id==S.me.uid?'disabled':''}>${[['performer','Performer'],['senior','Senior member'],['admin','Admin']].map(([k,l])=>`<option value="${k}" ${u.role==k?'selected':''}>${l}</option>`).join('')}</select></div>`).join('')}<button class="btn" data-a="close">Close</button>`)}
+
+// ---------- actions ----------
+const act={
+ tab:d=>{S.tab=d.v;render();scrollTo(0,0)},filt:d=>{S.f=d.v;render()},galT:d=>{S.gt=d.v;render()},close:closeS,
+ am:d=>{S.am=d.v;S.msg='';S.ok=0;render()},
+ async login(){const m=S.am,e=$('#e').value.trim(),p=$('#p')?$('#p').value:'';
+  try{
+   if(m=='fg'){if(!e)throw'Enter your email address.';await sendPasswordResetEmail(auth,e);S.am='in';S.ok=1;S.msg='If an account exists for that email, a reset link is on its way.';return render()}
+   if(m=='up'){const n=$('#n').value.trim();if(!n)throw'Enter your full name.';if(p.length<8)throw'Use a password of 8 or more characters.';if(p!=$('#p2').value)throw'The two passwords do not match.';
+    const c=await createUserWithEmailAndPassword(auth,e,p);await updateProfile(c.user,{displayName:n});await setDoc(doc(db,'users',c.user.uid),{name:n,email:e,role:'performer',createdAt:serverTimestamp()});await sendEmailVerification(c.user);return}
+   await signInWithEmailAndPassword(auth,e,p)
+  }catch(x){S.ok=0;S.msg=typeof x=='string'?x:friendly(x.code);render()}},
+ verified:()=>{S.manual=1;chk()},async resend(){await sendEmailVerification(auth.currentUser);toast('Verification email sent again.')},
+ logout:()=>{closeS();signOut(auth)},
+ menu:()=>showS(`<h2>Menu</h2><button class="btn" data-a="pw">Change password (email me a link)</button><button class="btn" data-a="logout">Log out</button><button class="btn" data-a="close">Close</button>`),
+ async pw(){await sendPasswordResetEmail(auth,S.me.email);closeS();toast('Password reset link sent to '+S.me.email)},
+ ev:d=>evSheet(d.id),evNew:()=>evForm(''),evEdit:d=>evForm(d.id),
+ async evSave(d){const n=$('#f1').value.trim(),v=$('#f6').value.trim(),y=$('#f3').value;if(!n||!v||!y)return toast('Add a name, date and venue');const[a,b,c]=y.split('-').map(Number);
+  const p={name:n,type:$('#f2').value,date:Timestamp.fromDate(new Date(a,b-1,c)),call:$('#f4').value||'17:00',show:$('#f5').value,venue:v,notes:$('#f7').value.trim(),costume:$('#f8').value.trim(),lineup:$('#f9').value.split('\n').map(s=>s.trim()).filter(Boolean)};
+  if(d.id)await updateDoc(doc(db,'events',d.id),p);else await addDoc(collection(db,'events'),{...p,createdAt:serverTimestamp()});closeS();toast('Event saved')},
+ async evDel(d){const r=await getDocs(collection(db,'events',d.id,'rsvps'));await Promise.all(r.docs.map(x=>deleteDoc(x.ref)));await deleteDoc(doc(db,'events',d.id));closeS();toast('Event deleted')},
+ async alert(d){const e=EV.find(x=>x.id==d.id);await addDoc(collection(db,'notifications'),{title:e.name+': call time changed',body:'Check the call sheet and tap Got it.',urgent:true,createdAt:serverTimestamp(),by:S.me.uid});toast('Urgent alert sent')},
+ async rs(d){await setDoc(doc(db,'events',d.id,'rsvps',S.me.uid),{status:d.v,name:S.me.name||S.me.email,updatedAt:serverTimestamp()});toast('Response saved')},
+ medNew:d=>medForm(d.v,''),medEdit:d=>medForm(MD.find(m=>m.id==d.id).kind,d.id),
+ medOpen:d=>{const x=MD.find(m=>m.id==d.id);showS(`<img src="${esc(x.url)}" alt="${esc(x.title)}" style="width:100%;border-radius:14px"><h2>${esc(x.title)}</h2>${isA()?`<button class="btn" data-a="medEdit" data-id="${x.id}">Edit</button><button class="btn" data-a="medDel" data-id="${x.id}" data-conf>Delete</button>`:''}<button class="btn" data-a="close">Close</button>`)},
+ async medSave(d){const k=d.v,t=$('#m1').value.trim()||'Untitled',u=$('#m2').value.trim();if(!/^https?:\/\//i.test(u))return toast('Paste a link starting with https://');const a=k=='photo'?0:+$('#m3').value;
+  if(d.id)await updateDoc(doc(db,'media',d.id),{title:t,url:u,access:a});else await addDoc(collection(db,'media'),{kind:k,title:t,url:u,access:a,createdAt:serverTimestamp()});closeS();toast('Saved')},
+ async medDel(d){await deleteDoc(doc(db,'media',d.id));closeS();toast('Deleted')},
+ prod:d=>prodSheet(d.id),prNew:()=>prForm(''),prEdit:d=>prForm(d.id),
+ async prSave(d){const n=$('#q1').value.trim(),p=parseFloat($('#q2').value);if(!n||isNaN(p)||p<0)return toast('Add a name and a price');const o={name:n,price:p,description:$('#q3').value.trim(),sizes:$('#q4').value.trim(),imageUrl:$('#q5').value.trim()};
+  if(d.id)await updateDoc(doc(db,'products',d.id),o);else await addDoc(collection(db,'products'),{...o,createdAt:serverTimestamp()});closeS();toast('Product saved')},
+ async prDel(d){await deleteDoc(doc(db,'products',d.id));CART=CART.filter(c=>c.id!=d.id);saveCart();closeS();toast('Product removed')},
+ addCart(d){const p=PR.find(x=>x.id==d.id),s=$('#sz')?$('#sz').value:'',i=CART.find(c=>c.id==p.id&&c.size==s);if(i)i.q++;else CART.push({id:p.id,name:p.name,size:s,price:Number(p.price),q:1});saveCart();closeS();render();toast('Added to cart')},
+ cart:cartSheet,qty(d){const c=CART[+d.i];c.q+=+d.v;if(c.q<1)CART.splice(+d.i,1);saveCart();render();cartSheet()},
+ async order(){const n=$('#o1').value.trim(),c=$('#o2').value.trim();if(!n||!c)return toast('Add your name and contact');
+  await addDoc(collection(db,'orders'),{uid:S.me.uid,name:n,contact:c,items:CART.map(i=>({name:i.name,size:i.size,qty:i.q,price:i.price})),total:CART.reduce((s,i)=>s+i.q*i.price,0),status:'New',createdAt:serverTimestamp()});CART=[];saveCart();closeS();render();toast('Order placed. The group will contact you.')},
+ orders:ordersSheet,
+ async ost(d){const o=OR.find(x=>x.id==d.id);await updateDoc(doc(db,'orders',d.id),{status:ST[(ST.indexOf(o.status)+1)%3]})},
+ async odel(d){await deleteDoc(doc(db,'orders',d.id))},
+ annNew:()=>showS(`<h2>New announcement</h2><label>Title<input id="a1"></label><label>Message<textarea id="a2"></textarea></label><label style="display:flex;gap:10px;align-items:center"><input id="a3" type="checkbox" style="width:24px;min-height:24px;margin:0"> Urgent (members must tap Got it)</label><button class="btn p" data-a="annSend">Send</button><button class="btn" data-a="close">Cancel</button>`),
+ async annSend(){const t=$('#a1').value.trim();if(!t)return toast('Add a title');await addDoc(collection(db,'notifications'),{title:t,body:$('#a2').value.trim(),urgent:$('#a3').checked,createdAt:serverTimestamp(),by:S.me.uid});closeS();toast('Sent')},
+ async ack(d){await setDoc(doc(db,'notifications',d.id,'acks',S.me.uid),{name:S.me.name||S.me.email,at:serverTimestamp()})},
+ async ntDel(d){await deleteDoc(doc(db,'notifications',d.id))},
+ members:membersSheet};
+document.addEventListener('click',e=>{const t=e.target.closest('[data-a]');if(!t)return;
+ if('conf' in t.dataset&&!t.dataset.armed){t.dataset.armed=1;const l=t.textContent;t.textContent='Tap again to confirm';setTimeout(()=>{if(t.isConnected){delete t.dataset.armed;t.textContent=l}},3000);return}
+ const f=act[t.dataset.a];if(f)Promise.resolve().then(()=>f(t.dataset,t)).catch(er)});
+document.addEventListener('change',e=>{const t=e.target;if(t.dataset&&t.dataset.c=='role')updateDoc(doc(db,'users',t.dataset.id),{role:t.value}).then(()=>toast('Role updated')).catch(er)});
+render();
+</script></body></html>
